@@ -1,0 +1,41 @@
+import java.rmi.*;
+import java.util.Random;
+import trieur.Trieur;
+
+class ClientTri {
+	static void main(String[] arg) {
+		Trieur serveur = null;
+
+		if (System.getSecurityManager() == null)
+			System.setSecurityManager(new RMISecurityManager());
+		try {
+			serveur = (Trieur)Naming.lookup("//" + arg[0] + "/Trieur");
+			Random alea = new Random(System.currentTimeMillis());
+			int nbEleves = 10;
+			Eleve[] eleves = new Eleve[nbEleves];
+			int i;
+
+			for (i = 0; i < nbEleves; i++) {
+				eleves[i] = new Eleve(Math.abs(alea.nextInt()%21));
+				System.out.print(eleves[i].note + " ");
+			}
+			System.out.println();
+			eleves = (Eleve[])serveur.trier(eleves);
+			for (i = 0; i < nbEleves; i++)
+					System.out.print(eleves[i].note + " ");
+			System.out.println();
+		}
+		catch (NotBoundException e) {
+			System.out.println("le nom du programme serveur "
+				 + "n'est pas enregistre");
+		}
+		catch (java.net.MalformedURLException e) {
+			System.out.println("Mauvais nom de serveur ; " +
+ 				e.getMessage());
+		}
+		catch (RemoteException e) {
+			System.out.println("Probleme de connexion a distance : "
+ 				+ e.getMessage());
+			}
+	}
+}
