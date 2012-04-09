@@ -19,12 +19,15 @@ package heritage;
 	}
 
 public	class C extends B {
-	  C() {
+/*	  C() {
 	    	super(3); 
 		    System.out.println("constructeur de C");
 	   }
-
-
+*/
+     C() { 
+    	 System.out.println("bleu");
+     }
+	   
      public static void main(String argv[]) {
 	      	new C();
 	   }

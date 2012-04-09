@@ -1,16 +1,16 @@
 package pile;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class Pile1 {
-	private ArrayList<Integer> liste = new ArrayList<Integer>();
+public class Pile2 {
+	private LinkedList<Integer> liste = new LinkedList<Integer>();
 	
 	void empiler(int n){
 		this.liste.add(n);
 	}
 	
 	int depiler() throws ExceptionPileVide{
-		if(estVide()){
+		if(this.liste.isEmpty()){
 			throw new ExceptionPileVide();
 		}
 		int cle = this.liste.get(this.liste.size() - 1);
@@ -18,12 +18,14 @@ public class Pile1 {
 		return cle;
 	}
 	
+	//inutile car utiliser isEmpty
 	boolean estVide(){
 		int taille = this.liste.size();
 		return taille == 0;
 	}
 	
-	ArrayList<Integer> getListe(){
+	LinkedList<Integer> getListe(){
 		return this.liste;
 	}
+
 }
