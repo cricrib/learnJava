@@ -3,7 +3,7 @@ package initialisateur;
 class TestInitialisateurStatique {
   static double[] desSinus = new double[10];
 
-  static {
+  static {//on peut aussi synchroniser un bloc d'instructions avec synchronized(){}
       for (int i = 0;i < desSinus.length; i++) 
                  desSinus[i] = Math.sin(i * Math.PI / 20);
     } 
